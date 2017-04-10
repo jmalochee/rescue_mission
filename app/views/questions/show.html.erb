@@ -1,0 +1,15 @@
+<h2> <%= @question.title %> </h2>
+<p>
+  <%= @question.description %>
+</p>
+
+<h3>Answers</h3>
+
+  <% @question.answers.each do |a| %>
+    <div class="answer">
+      <p>
+        <%= a.description %>
+      </p>
+      <span class="post-details"> posted by <%= a.user_id %> at <%= a.created_at %> </span>
+    </div>
+  <% end %>
