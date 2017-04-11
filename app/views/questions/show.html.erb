@@ -1,11 +1,15 @@
+<%= link_to "see all questions", questions_path %>
+
 <h2> <%= @question.title %> </h2>
 <p>
-  <%= @question.description %>
+  <%= simple_format(@question.description.gsub(' ', '&nbsp;')) %>
 </p>
+<span> <%= link_to "edit this question", edit_question_path(@question) %>
+  <%= link_to "destroy question", @question, method: :delete, data: { confirm: "You sure, yo?"} %>  </span>
 
 <h3>Answers</h3>
 <%= link_to "submit an answer", new_question_answer_path(@question) %>
-  <% @question.answers.each do |a| %>
+  <% @answers.each do |a| %>
     <div class="answer">
       <p>
         <%= a.description %>

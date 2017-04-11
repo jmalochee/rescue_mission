@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @answers = @question.answers.all.order(created_at: :asc)
   end
 
   def new
@@ -13,7 +14,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-
+    @question = Question.find(params[:id])
   end
 
   def create
@@ -29,11 +30,24 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    require "pry"
+    binding.pry
+    @question = Question.find(params[:id])
 
+    if @question.update_attributes(question_params)
+      flash[:notice] = 'nice. you do update'
+      redirect_to question_path(@question)
+    else
+      flash[:alert] = 'no good update. you bad.'
+      render :edit
+    end
   end
 
   def destroy
-
+    Question.find(params[:id]).answers.destroy_all
+    Question.find(params[:id]).destroy
+    flash[:alert] = 'game over, dude! game over!'
+    redirect_to "/"
   end
 
   private

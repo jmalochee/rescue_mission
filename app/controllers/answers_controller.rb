@@ -2,7 +2,6 @@ class AnswersController < ApplicationController
 
   def create
     @question = Question.find(params[:question_id])
-    binding.pry
     @answer = Answer.new(answer_params)
     @answer.question = @question
 
