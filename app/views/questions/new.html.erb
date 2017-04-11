@@ -1,5 +1,11 @@
 <h1>Ask a Question</h1>
 
+<% unless @question.errors.empty? %>
+  <div class="error">
+    <%= @question.errors.full_messages.to_sentence %>
+  </div>
+<% end %>
+
 <%= form_for :question, url: questions_path do |f| %>
   <p>
     <%= f.label :title %><br>

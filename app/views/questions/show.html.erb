@@ -4,7 +4,7 @@
 </p>
 
 <h3>Answers</h3>
-
+<%= link_to "submit an answer", new_question_answer_path(@question) %>
   <% @question.answers.each do |a| %>
     <div class="answer">
       <p>

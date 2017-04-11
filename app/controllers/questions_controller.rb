@@ -20,8 +20,10 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to @question, notice: 'Question was successfully created.'
+      flash[:notice] = 'you make question. good job you do'
+      redirect_to question_path(@question)
     else
+      flash[:alert] = 'you make bad. no good question.'
       render :new
     end
   end
